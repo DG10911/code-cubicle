@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  border-color: theme("colors.line.DEFAULT");
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(56, 225, 200, 0.05), transparent 60%),
+    radial-gradient(900px 500px at 0% 10%, rgba(90, 169, 245, 0.04), transparent 55%),
+    theme("colors.base.0");
+  color: theme("colors.ink.DEFAULT");
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Thin, quiet scrollbars — data-product feel */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: theme("colors.base.400");
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.base.500");
+  background-clip: content-box;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-line bg-base-100/80 shadow-panel backdrop-blur-sm;
+  }
+  .panel-inset {
+    @apply rounded-xl border border-line bg-base-50;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-base-200 px-2.5 py-1 text-2xs font-medium text-ink-muted;
+  }
+  .kbd {
+    @apply rounded-md border border-line bg-base-200 px-1.5 py-0.5 font-mono text-2xs text-ink-muted;
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(theme("colors.line.DEFAULT") 1px, transparent 1px),
+      linear-gradient(90deg, theme("colors.line.DEFAULT") 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .mono-num {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* Progressive row reveal used by the live dataset stream */
+.row-enter {
+  animation: fade-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
